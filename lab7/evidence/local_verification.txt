@@ -1,2 +1,0 @@
-$ node --check js/index.js
-exit=0
