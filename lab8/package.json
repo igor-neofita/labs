@@ -1,0 +1,19 @@
+{
+  "name": "web-lab08",
+  "version": "1.0.0",
+  "private": true,
+  "scripts": {
+    "build": "webpack --mode production",
+    "dev": "webpack --mode development --watch"
+  },
+  "devDependencies": {
+    "webpack": "^5.102.1",
+    "webpack-cli": "^5.1.4",
+    "typescript": "^5.9.3",
+    "ts-loader": "^9.5.4",
+    "sass": "^1.93.2",
+    "sass-loader": "^14.2.1",
+    "css-loader": "^6.11.0",
+    "style-loader": "^3.3.4"
+  }
+}

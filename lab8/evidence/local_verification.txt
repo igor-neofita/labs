@@ -1,0 +1,2 @@
+$ node --check dist/bundle.js
+exit=0

@@ -1,0 +1,16 @@
+import test from 'node:test';
+import assert from 'node:assert/strict';
+import { Person } from './models/Person.js';
+import { Course } from './models/Course.js';
+import { Teacher } from './models/Teacher.js';
+import { Student } from './models/Student.js';
+test('Person.getInfo',()=>assert.equal(new Person('Марія').getInfo(),'Особа: Марія'));
+test('Teacher extends Person',()=>assert.ok(new Teacher('Олена') instanceof Person));
+test('Student extends Person',()=>assert.ok(new Student('Ігор') instanceof Person));
+test('Course has no students by default',()=>assert.equal(new Course('WEB').getStudents().length,0));
+test('Course.addStudent and list',()=>{const c=new Course('WEB'),s=new Student('Ігор');c.addStudent(s);assert.deepEqual(c.getStudents(),[s]);});
+test('Course no duplicate students',()=>{const c=new Course('WEB'),s=new Student('Ігор');c.addStudent(s);c.addStudent(s);assert.equal(c.getStudents().length,1);});
+test('Teacher addCourse',()=>{const t=new Teacher('Олена'),c=new Course('WEB');t.addCourse(c);assert.equal(t.getCourses()[0],c);});
+test('Teacher no duplicate courses',()=>{const t=new Teacher('Олена'),c=new Course('WEB');t.addCourse(c);t.addCourse(c);assert.equal(t.getCourses().length,1);});
+test('Student addCourse',()=>{const s=new Student('Ігор'),c=new Course('WEB');s.addCourse(c);assert.equal(s.getCourses()[0],c);});
+test('Student no duplicate courses',()=>{const s=new Student('Ігор'),c=new Course('WEB');s.addCourse(c);s.addCourse(c);assert.equal(s.getCourses().length,1);});

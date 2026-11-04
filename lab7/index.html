@@ -1,0 +1,77 @@
+<!doctype html>
+<html lang="uk">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="ЛР №7: завантаження та збереження завдань через Fetch API">
+  <title>ЛР №7 — Fetch API</title>
+  <link rel="stylesheet" href="css/style.css">
+  <script src="js/index.js" defer></script>
+</head>
+<body>
+  <main class="task-app">
+    <header class="task-app__header">
+      <div>
+        <p class="task-app__eyebrow">WEB-програмування · Лабораторна робота №7 · User ID: 21</p>
+        <h1 class="task-app__title">Мої завдання</h1>
+        <p class="task-app__intro">Завантаження та збереження даних через Fetch API і MockAPI.</p>
+      </div>
+      <button class="button button--primary" id="add-task-button" type="button">
+        <svg class="button__icon" aria-hidden="true"><use href="img/sprite.svg#plus"></use></svg>
+        Додати завдання
+      </button>
+    </header>
+
+    <section class="task-editor" id="editor-panel" hidden aria-labelledby="editor-title">
+      <h2 class="task-editor__title" id="editor-title">Нове завдання</h2>
+      <form id="task-form" class="task-form">
+        <label class="task-form__label" for="task-title">Назва завдання</label>
+        <input class="task-form__input" type="text" id="task-title" name="title" maxlength="120" required>
+        <label class="task-form__label" for="task-desc">Опис завдання</label>
+        <textarea class="task-form__textarea" id="task-desc" name="description" rows="3" required></textarea>
+        <label class="task-form__label" for="task-tag">Категорія</label>
+        <input class="task-form__input" type="text" id="task-tag" name="tag" value="навчання" maxlength="60" required>
+        <label class="task-form__label" for="task-deadline">Термін виконання (необов'язково)</label>
+        <input class="task-form__input" type="date" id="task-deadline" name="deadline">
+        <label class="task-form__check"><input type="checkbox" name="isDone"> Виконано</label>
+        <div class="task-form__actions">
+          <button class="button button--primary" id="submit-button" type="submit">Створити</button>
+          <button class="button button--secondary" id="cancel-button" type="button">Скасувати</button>
+        </div>
+      </form>
+    </section>
+
+    <section class="task-section" aria-labelledby="section-title">
+      <div class="task-section__heading">
+        <h2 class="task-section__title" id="section-title">Завдання користувача №21</h2>
+        <p class="task-section__count" id="task-count">0 завдань</p>
+      </div>
+      <p class="task-section__loading" id="loading" role="status">Завантаження даних із сервера…</p>
+      <p class="task-section__error" id="error" role="alert" hidden></p>
+      <p class="task-section__empty" id="empty-message" hidden>Для цього користувача завдань немає.</p>
+      <div class="task-list" id="task-list"></div>
+    </section>
+    <p class="task-app__status" id="status" role="status" aria-live="polite"></p>
+  </main>
+
+  <template id="task-template">
+    <article class="task-card">
+      <div class="task-card__content">
+        <h3 class="task-card__title"></h3>
+        <p class="task-card__desc"></p>
+        <p class="task-card__meta"></p>
+      </div>
+      <div class="task-card__actions">
+        <button type="button" class="button button--small button--secondary" data-action="edit">
+          <svg class="button__icon" aria-hidden="true"><use href="img/sprite.svg#edit"></use></svg>
+          Редагувати
+        </button>
+        <button type="button" class="button button--small button--danger" data-action="delete">
+          <svg class="button__icon" aria-hidden="true"><use href="img/sprite.svg#trash"></use></svg>
+          Видалити
+        </button>
+      </div>
+    </article>
+  </template>
+</body>
+</html>
